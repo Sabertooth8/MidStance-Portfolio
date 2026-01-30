@@ -2158,15 +2158,6 @@ section.visible {
     justify-content: center;
   }
 
-  nav {
-    padding: 20px;
-  }
-
-  nav ul {
-    display: none;
-    /* Mobile menu logic needed or just stack */
-  }
-
   .founder-container {
     flex-direction: column;
     text-align: center;
@@ -2233,5 +2224,285 @@ section.visible {
 
   .contact-heading {
     font-size: 2rem;
+  }
+}
+
+/* === SMALL MOBILE (max-width: 480px) === */
+@media (max-width: 480px) {
+
+  /* Global fixes */
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  * {
+    max-width: 100%;
+  }
+
+  /* Navbar fixes */
+  .nav-container {
+    padding: 12px 15px;
+  }
+
+  .logo img {
+    height: 35px;
+  }
+
+  .logo span {
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+  }
+
+  .nav-menu {
+    width: 85%;
+    padding: 80px 25px 30px;
+  }
+
+  /* Hero section */
+  #cover {
+    padding: 100px 20px 60px;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .hero-text {
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+  }
+
+  .hero-text h2 {
+    font-size: 1rem;
+    letter-spacing: 4px;
+  }
+
+  .proposal-badge {
+    font-size: 0.65rem;
+    padding: 6px 12px;
+  }
+
+  .social-links {
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .social-links a svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .hero-image {
+    max-width: 200px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Section styling */
+  .proposal-section {
+    padding: 60px 15px;
+  }
+
+  .proposal-section h2 {
+    font-size: 2rem;
+    letter-spacing: 4px;
+  }
+
+  .section-intro {
+    font-size: 0.95rem;
+    padding: 0 10px;
+  }
+
+  /* Founder section */
+  .founder-image img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .founder-name {
+    font-size: 2rem;
+  }
+
+  .founder-tag {
+    font-size: 0.7rem;
+  }
+
+  .founder-bio {
+    font-size: 0.9rem;
+    padding: 0 10px;
+  }
+
+  .founder-highlights {
+    gap: 15px;
+  }
+
+  .highlight-item h4 {
+    font-size: 1.8rem;
+  }
+
+  .highlight-item span {
+    font-size: 0.7rem;
+  }
+
+  /* Business profile */
+  .profile-grid,
+  .service-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .profile-card,
+  .service-card {
+    padding: 20px;
+  }
+
+  /* Market analysis */
+  .market-card {
+    padding: 25px 20px;
+  }
+
+  /* Strategy section */
+  .strategy-card {
+    padding: 25px 20px;
+  }
+
+  .strategy-icon-wrap {
+    width: 60px;
+    height: 60px;
+  }
+
+  .strategy-icon-wrap img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .strategy-content h3 {
+    font-size: 1.4rem;
+  }
+
+  /* Management section */
+  .management-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .management-card {
+    padding: 25px 20px;
+  }
+
+  .management-icon {
+    font-size: 2.5rem;
+  }
+
+  .management-card h3 {
+    font-size: 1.2rem;
+  }
+
+  /* Portfolio section */
+  .section-subtitle {
+    font-size: 1.6rem;
+    margin-top: 40px;
+  }
+
+  .portfolio-card {
+    margin: 0 5px;
+  }
+
+  .portfolio-image {
+    height: 180px;
+  }
+
+  .portfolio-info {
+    padding: 20px 15px;
+  }
+
+  .portfolio-info h4 {
+    font-size: 1.2rem;
+  }
+
+  /* Contact section */
+  .contact-heading {
+    font-size: 1.6rem;
+  }
+
+  .contact-desc {
+    font-size: 0.95rem;
+  }
+
+  .contact-cards {
+    gap: 15px;
+  }
+
+  .contact-card {
+    padding: 15px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact-card-icon {
+    font-size: 1.5rem;
+  }
+
+  .contact-card-value {
+    font-size: 0.95rem;
+  }
+
+  .contact-right {
+    padding: 25px 20px;
+  }
+
+  .modern-form input,
+  .modern-form textarea {
+    padding: 14px 16px;
+    font-size: 0.9rem;
+  }
+
+  .submit-btn {
+    padding: 14px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* Footer */
+  footer {
+    padding: 20px 15px;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+  }
+
+  /* Back to top button */
+  #back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+
+  /* Marquee */
+  .marquee-divider-full {
+    padding: 15px 0;
+  }
+
+  .marquee-divider-full .marquee-track span {
+    font-size: 1.2rem;
+    letter-spacing: 4px;
   }
 }
