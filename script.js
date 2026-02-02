@@ -330,11 +330,11 @@ Sent from Midstance Website Contact Form`;
     const encodedSubject = encodeURIComponent(subject);
     const encodedBody = encodeURIComponent(body);
 
-    // Create mailto link
-    const mailtoLink = `mailto:ponyoo274@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
+    // Create Gmail compose link
+    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=ponyoo274@gmail.com&su=${encodedSubject}&body=${encodedBody}`;
 
-    // Open email client
-    window.location.href = mailtoLink;
+    // Open Gmail in new tab
+    window.open(gmailLink, '_blank');
 
     // Visual feedback
     const submitBtn = contactForm.querySelector('button[type="submit"]');
