@@ -303,33 +303,50 @@ if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const company = document.getElementById('company').value || 'Not specified';
+    const message = document.getElementById('message').value;
+
+    // Build email subject and body
+    const subject = `Business Inquiry - ${name}${company !== 'Not specified' ? ` (${company})` : ''}`;
+    const body = `Halo Midstance Agency,
+
+Saya ${name} ingin mengajukan inquiry:
+
+───────────────────────────
+📧 Email: ${email}
+🏢 Company: ${company}
+───────────────────────────
+
+📝 Message:
+${message}
+
+───────────────────────────
+Sent from Midstance Website Contact Form`;
+
+    // Encode for URL
+    const encodedSubject = encodeURIComponent(subject);
+    const encodedBody = encodeURIComponent(body);
+
+    // Create mailto link
+    const mailtoLink = `mailto:ponyoo274@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
+
+    // Open email client
+    window.location.href = mailtoLink;
+
+    // Visual feedback
     const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
+    submitBtn.innerHTML = '<span>Opening Email...</span><span class="btn-arrow">→</span>';
+    submitBtn.style.backgroundColor = '#00f0ff';
+    submitBtn.style.color = '#050505';
 
-    // Loading State
-    submitBtn.textContent = 'Sending...';
-    submitBtn.style.opacity = '0.7';
-    submitBtn.disabled = true;
-
-    // Simulate sending
+    // Reset button after delay
     setTimeout(() => {
-      // Success State
-      submitBtn.textContent = 'Message Sent!';
-      submitBtn.style.backgroundColor = '#00f0ff'; /* Primary color */
-      submitBtn.style.color = '#050505';
-      submitBtn.style.opacity = '1';
-      submitBtn.style.boxShadow = '0 0 20px rgba(0, 240, 255, 0.4)';
-
-      contactForm.reset();
-
-      // Reset button after 3 seconds
-      setTimeout(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.style.backgroundColor = '';
-        submitBtn.style.color = '';
-        submitBtn.style.boxShadow = '';
-        submitBtn.disabled = false;
-      }, 3000);
-    }, 1500);
+      submitBtn.innerHTML = '<span>Accept Proposal</span><span class="btn-arrow">→</span>';
+      submitBtn.style.backgroundColor = '';
+      submitBtn.style.color = '';
+    }, 2000);
   });
 }
