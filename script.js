@@ -15,6 +15,39 @@ const observer = new IntersectionObserver((entries) => {
 
 sections.forEach((sec) => observer.observe(sec));
 
+// === ANIMATED COUNTER FOR STATS ===
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const statNumbers = entry.target.querySelectorAll('.stat-number');
+      statNumbers.forEach((num) => {
+        const target = parseInt(num.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // 60fps
+        let current = 0;
+
+        const updateCounter = () => {
+          current += increment;
+          if (current < target) {
+            num.textContent = Math.floor(current);
+            requestAnimationFrame(updateCounter);
+          } else {
+            num.textContent = target;
+          }
+        };
+
+        updateCounter();
+      });
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+const statsRow = document.querySelector('.exec-stats-row');
+if (statsRow) {
+  counterObserver.observe(statsRow);
+}
+
 // === INFINITE CAROUSEL (Seamless Loop) ===
 const carousel = document.querySelector('.carousel');
 if (carousel) {
@@ -287,15 +320,47 @@ if (heroImage) {
   });
 }
 
-// === LOADING ANIMATION ===
-window.addEventListener('load', () => {
-  document.body.style.opacity = '0';
-  document.body.style.transition = 'opacity 0.5s ease';
+// === SPLASH SCREEN CONTROLLER ===
+function initSplashScreen() {
+  const splashScreen = document.getElementById('splash-screen');
+  const particlesContainer = document.getElementById('splash-particles');
 
+  if (!splashScreen || !particlesContainer) return;
+
+  // Create glitch particles
+  const particleCount = 40;
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('splash-particle');
+
+    // Random starting position from edges
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 150 + Math.random() * 100;
+    const startX = Math.cos(angle) * distance;
+    const startY = Math.sin(angle) * distance;
+
+    particle.style.setProperty('--start-x', `${startX}px`);
+    particle.style.setProperty('--start-y', `${startY}px`);
+    particle.style.left = '50%';
+    particle.style.top = '50%';
+    particle.style.animationDelay = `${Math.random() * 0.5}s`;
+
+    particlesContainer.appendChild(particle);
+  }
+
+  // Dismiss splash screen after animation completes
   setTimeout(() => {
-    document.body.style.opacity = '1';
-  }, 100);
-});
+    splashScreen.classList.add('fade-out');
+
+    // Remove from DOM after fade out
+    setTimeout(() => {
+      splashScreen.remove();
+    }, 800);
+  }, 2500);
+}
+
+// Initialize splash screen immediately
+initSplashScreen();
 
 // === CONTACT FORM HANDLING ===
 const contactForm = document.getElementById('contact-form');
